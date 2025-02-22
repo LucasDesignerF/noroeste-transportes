@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento - Designer Gráfico</title>
+    <link rel="icon" href="https://imgur.com/EuZYoN1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --preto-carbon: #0a0a0a;
+            --preto-metal: #1a1a1a;
+            --neon-verde: #00ff9d;
+            --branco-tech: #f0f0f0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        body {
+            background: var(--preto-carbon);
+            color: var(--branco-tech);
+        }
+        /* Navbar Simplificada */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--neon-verde), #00cc88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Hero Section Dramática */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: 
+                radial-gradient(circle at 75% 30%, 
+                    rgba(0, 255, 157, 0.1) 0%, 
+                    transparent 40%),
+                linear-gradient(215deg, var(--preto-carbon) 40%, var(--preto-metal));
+            padding: 0 5%;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero:before {
+            content: '';
+            position: absolute;
+            width: 200vw;
+            height: 200vh;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 5px,
+                    rgba(0, 255, 157, 0.05) 5px,
+                    rgba(0, 255, 157, 0.05) 10px
+                );
+            transform: rotate(-25deg);
+            pointer-events: none;
+        }
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+        .hero-content p {
+            font-size: 1.4rem;
+            color: rgba(240, 240, 240, 0.9);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .scroll-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            background: var(--neon-verde);
+            color: var(--preto-carbon);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+        .scroll-button:hover {
+            background: #00cc88;
+        }
+        .scroll-button i {
+            margin-left: 0.5rem;
+            animation: arrow-down 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes arrow-down {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+        /* Orçamento Section */
+        .orcamento {
+            padding: 6rem 5%;
+            background: var(--preto-metal);
+            border-top: 1px solid rgba(0, 255, 157, 0.1);
+        }
+        .orcamento h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--neon-verde);
+            text-align: center;
+        }
+        .orcamento-box {
+            background: var(--preto-carbon);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 157, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .orcamento-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        .orcamento-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        .orcamento-table th,
+        .orcamento-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            color: var(--branco-tech);
+            font-size: 1rem;
+        }
+        .orcamento-table th {
+            font-weight: bold;
+            color: var(--neon-verde);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .orcamento-table td {
+            vertical-align: top;
+        }
+        .orcamento-table tr:last-child td {
+            border-bottom: none;
+        }
+        .total {
+            margin-top: 2rem;
+            font-weight: bold;
+            text-align: right;
+            color: var(--neon-verde);
+            font-size: 1.2rem;
+        }
+        .pay-button {
+            display: block;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: var(--neon-verde);
+            color: var(--preto-carbon);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .pay-button:hover {
+            background: #00cc88;
+        }
+        /* Observação */
+        .observation {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(240, 240, 240, 0.7);
+            text-align: center;
+        }
+        .observation em {
+            font-style: italic;
+        }
+        /* Prévia da Logo */
+        .logo-preview {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .logo-preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            background: white;
+            padding: 1rem;
+            border: 2px solid var(--neon-verde);
+        }
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: var(--preto-metal);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+        }
+        .modal-content img {
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+        .modal-content p {
+            color: var(--branco-tech);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .copy-button {
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--neon-verde);
+            color: var(--preto-carbon);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .copy-button:hover {
+            background: #00cc88;
+        }
+        .close-modal {
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--neon-verde);
+            color: var(--preto-carbon);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .close-modal:hover {
+            background: #00cc88;
+        }
+        /* Footer */
+        footer {
+            background: var(--preto-metal);
+            color: var(--branco-tech);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 255, 157, 0.1);
+        }
+        footer a {
+            color: var(--neon-verde);
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            .modal-content {
+                padding: 1.5rem;
+            }
+            .copy-button, .close-modal {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Simplificada -->
+    <nav class="navbar">
+        <div class="logo">Fortes Graf - Comunicação Visual</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Crie Identidades Visuais Extraordinárias</h1>
+            <p>Transforme sua marca com designs exclusivos e profissionais.</p>
+            <button class="scroll-button" onclick="scrollToOrcamento()">Ver Orçamento <i class="fas fa-arrow-down"></i></button>
+        </div>
+    </section>
+
+    <!-- Orçamento Section -->
+    <section class="orcamento" id="orcamento">
+        <h2>Orçamento</h2>
+        <div class="orcamento-box">
+            <!-- Detalhes do Orçamento -->
+            <div class="orcamento-details">
+                <table class="orcamento-table">
+                    <thead>
+                        <tr>
+                            <th>Serviço</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Criação de Logo</td>
+                            <td>Design exclusivo para sua marca</td>
+                            <td>R$ 30,00</td>
+                        </tr>
+                        <tr>
+                            <td>Consultoria de Marketing</td>
+                            <td>
+                                Inclui:<br>
+                                - Criação de Identidade Visual<br>
+                                - Gestão de Social Media<br>
+                                - 8 artes mensais para redes sociais
+                            </td>
+                            <td>R$ 180,00/mês</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="total">
+                    <p>Total a Pagar Hoje (22/02/2025): <strong>R$ 30,00</strong> (Logo)</p>
+                </div>
+                <button class="pay-button" onclick="openModal()">Pagar Agora</button>
+                <!-- Observação -->
+                <p class="observation">
+                    <em>* As cores da logo podem ser alteradas mediante solicitação após a confirmação do pagamento.</em>
+                </p>
+            </div>
+
+            <!-- Prévia da Logo -->
+            <div class="logo-preview">
+                <p><strong>Prévia da Logo:</strong></p>
+                <img src="https://imgur.com/6pEhNSn.png" alt="Prévia da Logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <img src="https://imgur.com/Yn3jhf4.png" alt="QR Code Pix">
+            <p><strong>Chave PIX:</strong> fortes.barman@gmail.com</p>
+            <p><strong>Banco:</strong> PicPay</p>
+            <p><strong>Nome:</strong> Lucas Rodrigues Fortes</p>
+            <button class="copy-button" onclick="copyToClipboard('fortes.barman@gmail.com')">Copiar Chave PIX</button>
+            <button class="close-modal" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Code Projects - Desenvolvendo Soluções - by &copy;Fortes Graf Comunicação Visual - Since 2019-2025
+    </footer>
+
+    <script>
+        function openModal() {
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Chave PIX copiada para a área de transferência!");
+            }).catch(err => {
+                console.error("Erro ao copiar texto: ", err);
+            });
+        }
+
+        function scrollToOrcamento() {
+            document.getElementById('orcamento').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
