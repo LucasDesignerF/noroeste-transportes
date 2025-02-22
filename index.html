@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orçamento - Designer Gráfico</title>
+    <title>Orçamento - Designer Gráfico | Fortes Graf</title>
     <link rel="icon" href="https://imgur.com/EuZYoN1.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Meta Tags para Embed -->
+    <meta property="og:title" content="Orçamento - Designer Gráfico | Fortes Graf">
+    <meta property="og:description" content="Transforme sua marca com designs exclusivos e profissionais. Crie identidades visuais extraordinárias com a Fortes Graf Comunicação Visual.">
+    <meta property="og:image" content="https://imgur.com/EuZYoN1.png">
+    <meta property="og:url" content="https://noroeste-transportes.pages.dev/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Orçamento - Designer Gráfico | Fortes Graf">
+    <meta name="twitter:description" content="Transforme sua marca com designs exclusivos e profissionais. Crie identidades visuais extraordinárias com a Fortes Graf Comunicação Visual.">
+    <meta name="twitter:image" content="https://imgur.com/EuZYoN1.png">
     <style>
         :root {
             --preto-carbon: #0a0a0a;
@@ -36,6 +45,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            transition: top 0.3s ease;
         }
         .logo {
             font-size: 1.8rem;
@@ -313,7 +323,7 @@
 </head>
 <body>
     <!-- Navbar Simplificada -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="logo">Fortes Graf - Comunicação Visual</div>
     </nav>
 
@@ -394,6 +404,18 @@
     </footer>
 
     <script>
+        // Navbar que desaparece ao rolar
+        let prevScrollPos = window.pageYOffset;
+        window.onscroll = function () {
+            let currentScrollPos = window.pageYOffset;
+            if (prevScrollPos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0";
+            } else {
+                document.getElementById("navbar").style.top = "-80px";
+            }
+            prevScrollPos = currentScrollPos;
+        };
+
         function openModal() {
             document.getElementById('paymentModal').style.display = 'flex';
         }
